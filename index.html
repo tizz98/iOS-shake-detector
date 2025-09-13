@@ -327,7 +327,7 @@
         
         avgOfAvgIntensity = avgReadings.reduce((a, b) => a + b, 0) / avgReadings.length;
         
-        updateDisplay(magnitude, peakIntensity, avgOfAvgIntensity);
+        updateDisplay(avgIntensity, peakIntensity, avgOfAvgIntensity);
     }
 
     function updateDisplay(current, peak, avg) {
