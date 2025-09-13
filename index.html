@@ -229,6 +229,7 @@
     let currentIntensity = 0;
     let peakIntensity = 0;
     let readings = [];
+    let avgReadings = [];
     const maxReadings = 50;
     const circumference = 2 * Math.PI * 105;
 
@@ -319,7 +320,14 @@
         
         const avgIntensity = readings.reduce((a, b) => a + b, 0) / readings.length;
         
-        updateDisplay(magnitude, peakIntensity, avgIntensity);
+        avgReadings.push(avgIntensity);
+        if (avgReadings.length > maxReadings) {
+            avgReadings.shift();
+        }
+        
+        avgOfAvgIntensity = avgReadings.reduce((a, b) => a + b, 0) / avgReadings.length;
+        
+        updateDisplay(magnitude, peakIntensity, avgOfAvgIntensity);
     }
 
     function updateDisplay(current, peak, avg) {
